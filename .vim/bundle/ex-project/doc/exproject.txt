@@ -1,0 +1,271 @@
+*exproject.txt*    A file browser focus on your current working directory.
+
+Author:         Johnny Wu <karasaya@gmail.com>
+Licence:        MIT licence
+Homepage:       http://exvim.github.io/
+Version:        0.1.0
+
+==============================================================================
+Contents                                       *exproject*  *exproject-contents*
+
+         1. Intro ........................... |exproject-intro|
+         2. Requirements .................... |exproject-requirements|
+         3. Usage ........................... |exproject-usage|
+              Commands ...................... |exproject-commands|
+              Key mappings .................. |exproject-mappings|
+         4. Configuration ................... |exproject-configuration|
+              Highlight colours ............. |exproject-highlighting|
+         5. Functions ....................... |exproject-functions|
+         6. Troubleshooting & Known issues .. |exproject-issues|
+         7. History ......................... |exproject-history|
+
+==============================================================================
+1. Intro                                                     *exproject-intro*
+
+ex-project is a file browser focus on your current working directory. 
+It provides a tree view window and allow you to manipulate folders and files 
+directly in it. 
+
+Many Vim users thought ex-project is yet another NERDTree. But actually they 
+have different scope. ex-project is more focus on your current project 
+( or working directory ). It provides folder and file filter with it and 
+building the whole project tree very fast first time you working the project. 
+It also allow you create folders, files directly in the tree view window. 
+
+More over that, ex-project can be working with NERDTree seamlessly by its 
+window swapping functions.
+
+==============================================================================
+2. Requirements                                       *exproject-requirements*
+
+The following requirements have to be met in order to be able to use 
+exproject:
+
+  - Vim 6.0 or higher
+  - ex-utility: (https://github.com/exvim/ex-utility) 
+
+==============================================================================
+3. Usage                                                     *exproject-usage*
+
+Create new project file ~
+
+Go to your working project, open the Vim. Type |:EXProject|
+`your_project_file.exproject`. You will see a project window open. Go to the 
+project window and type |<leader>R| to build your file tree.
+
+------------------------------------------------------------------------------
+COMMANDS                                                  *exproject-commands*
+
+:EXProject {file}                                                 *:EXProject*
+    Open project {file} in ex-project winow. If no {file} provide, exproject
+    will use ./files.exproject as default. 
+
+:EXProjectOpen                                                *:EXProjectOpen*
+    Open ex-project window.
+
+:EXProjectClose                                              *:EXProjectClose*
+    Close ex-project window.
+
+:EXProjectToggle                                            *:EXProjectToggle*
+    Toggle ex-project window.
+
+:EXProjectBuild                                              *:EXProjectBuild*
+    Build project tree.
+
+:EXProjectFind                                                *:EXProjectFind*
+    Find current edit file in project tree.
+
+:EXProjectRefresh                                          *:EXProjectRefresh*
+    Recursively refresh current folder in project tree.
+
+------------------------------------------------------------------------------
+KEY MAPPINGS                                              *exproject-mappings*
+
+Default key mappings:
+
+                                                            *'exproject-<F1>'*
+<F1>        
+    Toggle Help    
+
+                                                         *'exproject-<Space>'*
+<Space>
+    Zoom in/out project window
+
+                                                            *'exproject-<CR>'*
+                                                   *'exproject-<2-LeftMouse>'*
+<CR> or <2-LeftMouse>
+    When cursor on a file, it will open it in edit window.
+    When cursor on a folder, it will fold in/out the folder.
+
+                                                          *'exproject-<S-CR>'*
+                                                 *'exproject-<S-2-LeftMouse>'*
+<S-CR> or <S-2-LeftMouse>
+    When cursor on a file, it will open it in edit window splitted.
+    When cursor on a folder, it will open the folder path in OS's file 
+    explorer
+
+
+                                                           *'exproject-<C-k>'*
+<C-k>
+    Move cursor up to the nearest folder
+
+                                                           *'exproject-<C-j>'*
+<C-j>
+    Move cursor down to the nearest folder
+    
+
+                                                       *'exproject-<leader>R'*
+<leader>R
+    Rebuild the project tree
+
+                                                       *'exproject-<leader>r'*
+<leader>r
+    Refresh current folder your cursor in.
+
+                                                               *'exproject-o'*
+o
+    Create new file. The cursor must in a file or folder line. 
+
+                                                               *'exproject-O'*
+O
+    Create new folder. The cursor must in a folder line. When start create,
+    exproject will ask you to input the new folder name.
+
+                                                         *'exproject-<C-Tab>'*
+<C-Tab>
+    Switch between NERDTree and exproject. To make it work, your Vim must 
+    have NERDTree installed. exproject will add keymapping of <C-Tab> in 
+    NERDTree when it detect the plugin after Vim started.
+
+
+==============================================================================
+4. Configuration                                     *exproject-configuration*
+
+                                                           *g:ex_project_file*
+g:ex_project_file~
+Default: './files.exproject'
+
+The default path of the project file. When you open the project window and
+no project file specified, it will use this value as default project file 
+path.
+
+                                                        *g:ex_project_winsize*
+g:ex_project_winsize~
+Default: 30
+
+The window size of project window.  
+
+                                                   *g:ex_project_winsize_zoom*
+g:ex_project_winsize_zoom~
+Default: 60
+
+The zoomed size of project window.
+
+                                                         *g:ex_project_winpos*
+g:ex_project_winpos~
+Default: 'left'
+Options: 'left', 'right', 'top', 'bottom'
+
+The position of project window.
+
+                                                    *g:ex_project_enable_help*
+g:ex_project_enable_help~
+Default: 1
+
+Enable help text in the plugin
+
+------------------------------------------------------------------------------
+HIGHLIGHT COLOURS                                     *exproject-highlighting*
+
+ex_pj_help~
+    Help text
+
+ex_pj_help_key~
+    Help mappings
+
+ex_pj_help_comma~
+    Help comma
+
+ex_pj_fold~
+    Folder
+
+ex_pj_tree_line~
+    Tree line
+
+ex_pj_file_name~
+    File name
+
+ex_pj_ft_exvim~
+    .exvim file
+
+ex_pj_ft_error~
+    .err file
+
+If you want to change any of those colours put a line like the following in
+your vimrc:
+>
+    hi ex_pj_fold guifg=Green ctermfg=Green
+<
+See |:highlight| for more information.
+
+==============================================================================
+5. Functions                                             *exproject-functions*
+
+                                                 *exproject#register_hotkey()*
+exproject#register_hotkey({priority}, {key}, {action}, {desc})
+    Register your key-mapping by {key} in ex-project window. The {key} will 
+    execute function you define in {action}. The {priority} will sort your
+    {key} and {desc} in the help context in ex-project window.
+
+                                               *exproject#find_current_edit()*
+exproject#find_current_edit({focus})
+    Find current edit file and locate the cursor to it in project window. If
+    {focus} is 1, the cursor will jump to project window, otherwise it will
+    stay in current buffer.
+
+                                                *exproject#set_file_filters()*
+exproject#set_file_filters({filters})
+    Set file filters for ex-project. The {filters} is a file suffix array.
+    For example:
+>
+        call exproject#set_file_filters(['c','cpp','h'])
+<
+    The script above will make ex-project only show files with `.c`, `.cpp` 
+    and `.h` suffix.
+
+                                        *exproject#set_file_ignore_patterns()*
+exproject#set_file_ignore_patterns({patterns})
+
+    TODO: have not implemented yet
+
+                                          *exproject#set_folder_filter_mode()*
+exproject#set_folder_filter_mode({mode})
+    Set folder filter mode. The {mode} accept value 'include' or 'exclude'. 
+    The mode will be used as filter method for folder fitler setted by 
+    |exproject#set_folder_filters()|.
+
+                                              *exproject#set_folder_filters()*
+exproject#set_folder_filters({filters})
+    Set folder filters for ex-project. The {filters} is a string array which
+    stores the first-level folder names. If filter mode is 'include', it 
+    will show the folders in {filters}. If filter mode is 'exclude', it 
+    *will not* show the folders in {fitlers}. 
+    For example:
+>
+        call exproject#set_folder_filters(['src','include'])
+<
+    The script above will make ex-project only show 'src' and 'inlucde' 
+    folder unders the root directory if filter mode is set to 'include'.
+
+==============================================================================
+6. Troubleshooting & Known issues                           *exproject-issues*
+
+
+==============================================================================
+7. History                                                 *exproject-history*
+
+0.1.0 (2014-04-14)
+    - Initial release
+
+==============================================================================
+ vim: tw=78 ts=8 sw=4 sts=4 et ft=help

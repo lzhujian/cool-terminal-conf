@@ -1,0 +1,199 @@
+*easyhl.txt*    Temporary highlght words easily.
+
+Author:         Johnny Wu <karasaya@gmail.com>
+Licence:        MIT licence
+Homepage:       http://exvim.github.io/
+Version:        0.1.0
+
+==============================================================================
+Contents                                            *easyhl* *easyhl-contents*
+
+         1. Intro ........................... |easyhl-intro|
+         2. Requirements .................... |easyhl-requirements|
+         3. Usage ........................... |easyhl-usage|
+              Commands ...................... |easyhl-commands|
+              Key mappings .................. |easyhl-mappings|
+         4. Configuration ................... |easyhl-configuration|
+              Highlight colours ............. |easyhl-highlighting|
+         5. Extending Easyhl ................ |easyhl-extend|
+         6. Troubleshooting & Known issues .. |easyhl-issues|
+         7. History ......................... |easyhl-history|
+
+==============================================================================
+1. Intro                                                        *easyhl-intro*
+
+Easyhl is a plugin for temporary highlight words under cursor.
+
+
+==============================================================================
+2. Requirements                                          *easyhl-requirements*
+
+The following requirements have to be met in order to be able to use easyhl:
+
+  - Vim 6.0 or higher.
+
+==============================================================================
+3. Usage                                                        *easyhl-usage*
+
+Highlight words under cursor ~
+
+Move your cursor to the word you want to highlight. Press <Alt-1> or <Alt-2> 
+or <Alt-3> or <Alt-4>
+
+Highlith visual selection~
+
+By selecting text, and press <Alt-1> or <Alt-2> or <Alt-3> or <Alt-4>, you 
+can highlight selected text
+
+Cancel highlight words~
+
+Presss <Leader>1 or <Leader>2 or <Leader>3 or <Leader>4
+
+You also can cancel highlight all by press <Leader>0 or <Atl-0>
+
+Replace highlight words~
+
+When you use both highlight Label 1 and 2 for highlighting, you can then 
+press <Leader>sub to replace Label 1 words as Label 2
+
+------------------------------------------------------------------------------
+COMMANDS                                                     *easyhl-commands*
+
+:EasyhlWord {nr}                                                 *:EasyhlWord*
+    Highlight words under cursor by label {nr}.
+
+:EasyhlCancel {nr}                                             *:EasyhlCancel*
+    Cancel highlight label {nr}.
+
+:[range]EasyhlRange {nr}                                        *:EasyhlRange*
+    Highlight visual selected text.
+
+:HL1 [{pat}]                                                            *:HL1*
+    Highlight {pat} by label 1, if {pat} not given, cancel current highlight
+    of label 1
+
+:HL2 [{pat}]                                                            *:HL2*
+    Highlight {pat} by label 2, if {pat} not given, cancel current highlight
+    of label 2
+
+:HL3 [{pat}]                                                            *:HL3*
+    Highlight {pat} by label 3, if {pat} not given, cancel current highlight
+    of label 3
+
+:HL4 [{pat}]                                                            *:HL4*
+    Highlight {pat} by label 4, if {pat} not given, cancel current highlight
+    of label 4
+
+------------------------------------------------------------------------------
+KEY MAPPINGS                                                 *easyhl-mappings*
+
+Default key mappings:
+
+                                                              *'easyhl-<a-1>'*
+<Atl-1>        
+    Highlight current words on label 1, toggle highlight when same word 
+    meets
+
+                                                              *'easyhl-<a-2>'*
+<Atl-2>
+    Highlight current words on label 2, toggle highlight when same word 
+    meets 
+
+                                                              *'easyhl-<a-3>'*
+<Atl-3>
+    Highlight current words on label 3, toggle highlight when same word 
+    meets 
+
+                                                              *'easyhl-<a-4>'*
+<Atl-4>
+    Highlight current words on label 4, toggle highlight when same word 
+    meets 
+
+                                                              *'easyhl-<a-0>'*
+<Atl-0>
+    Cancel highlight all labels
+
+                                                          *'easyhl-<leader>1'*
+<Leader>1
+    Cancel highlight label 1
+
+                                                          *'easyhl-<leader>2'*
+<Leader>2
+    Cancel highlight label 2
+
+                                                          *'easyhl-<leader>3'*
+<Leader>3
+    Cancel highlight label 3
+
+                                                          *'easyhl-<leader>4'*
+<Leader>4
+    Cancel highlight label 4
+
+                                                        *'easyhl-<leader>sub'*
+<Leader>sub
+    Replace label 1 highlight words with label 2 highlight words
+
+
+==============================================================================
+4. Configuration                                        *easyhl-configuration*
+
+                                                   *g:ex_easyhl_auto_cursorhl*
+g:ex_easyhl_auto_cursorhl~
+Default: 0
+
+By default the cursor higlight is turn off.  use this option to turn on 
+cursor highlight, when cursor stay for several seconds, the word under 
+cursor will be highlighted.
+
+------------------------------------------------------------------------------
+HIGHLIGHT COLOURS                                        *easyhl-highlighting*
+
+All of the colours used by easyhl can be customized. Here is a list of the
+highlight groups that are defined by Tagbar:
+
+>
+    hi default ex_easyhl_cursorhl gui=none guibg=White term=none cterm=none ctermbg=white 
+    hi default ex_easyhl1 gui=none guibg=LightCyan term=none cterm=none ctermbg=lightcyan
+    hi default ex_easyhl2 gui=none guibg=LightMagenta term=none cterm=none ctermbg=lightmagenta
+    hi default ex_easyhl3 gui=none guibg=LightRed term=none cterm=none ctermbg=lightred
+    hi default ex_easyhl4 gui=none guibg=LightGreen term=none cterm=none ctermbg=lightgreen
+<
+
+ex_easyhl_cursorhl~
+    Cursor highlight
+
+ex_easyhl1~
+    Label 1
+
+ex_easyhl2~
+    Label 2
+
+ex_easyhl3~
+    Label 3
+
+ex_easyhl4~
+    Label 4
+
+If you want to change any of those colours put a line like the following in
+your vimrc:
+>
+    hi ex_easyhl4 guifg=Green ctermfg=Green
+<
+See |:highlight| for more information.
+
+==============================================================================
+5. Extending easyhl                                            *easyhl-extend*
+
+
+==============================================================================
+6. Troubleshooting & Known issues                              *easyhl-issues*
+
+
+==============================================================================
+7. History                                                    *easyhl-history*
+
+1.0.0 (2014-03-19)
+    - Initial release
+
+==============================================================================
+ vim: tw=78 ts=8 sw=4 sts=4 et ft=help

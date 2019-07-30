@@ -1,0 +1,160 @@
+*exqfix.txt*    A file browser focus on your current working directory.
+
+Author:         Johnny Wu <karasaya@gmail.com>
+Licence:        MIT licence
+Homepage:       http://exvim.github.io/
+Version:        0.1.0
+
+==============================================================================
+Contents                                       *exqfix*  *exqfix-contents*
+
+         1. Intro ........................... |exqfix-intro|
+         2. Requirements .................... |exqfix-requirements|
+         3. Usage ........................... |exqfix-usage|
+              Commands ...................... |exqfix-commands|
+              Key mappings .................. |exqfix-mappings|
+         4. Configuration ................... |exqfix-configuration|
+              Highlight colours ............. |exqfix-highlighting|
+         5. Functions ....................... |exqfix-functions|
+         6. Troubleshooting & Known issues .. |exqfix-issues|
+         7. History ......................... |exqfix-history|
+
+==============================================================================
+1. Intro                                                     *exqfix-intro*
+
+TODO
+
+==============================================================================
+2. Requirements                                       *exqfix-requirements*
+
+The following requirements have to be met in order to be able to use 
+exqfix:
+
+  - Vim 6.0 or higher
+  - ex-utility: (https://github.com/exvim/ex-utility) 
+
+==============================================================================
+3. Usage                                                     *exqfix-usage*
+
+TODO
+
+------------------------------------------------------------------------------
+COMMANDS                                                  *exqfix-commands*
+
+:QFix {file}                                                 *:QFix*
+    TODO
+
+:EXQFixOpen                                                *:EXQFixOpen*
+    Open ex-qfix window.
+
+:EXQFixClose                                              *:EXQFixClose*
+    Close ex-qfix window.
+
+:EXQFixToggle                                            *:EXQFixToggle*
+    Toggle ex-qfix window.
+
+
+------------------------------------------------------------------------------
+KEY MAPPINGS                                              *exqfix-mappings*
+
+Default key mappings:
+
+                                                            *'exqfix-<F1>'*
+<F1>        
+    Toggle Help    
+
+                                                         *'exqfix-<Space>'*
+<Space>
+    Zoom in/out project window
+
+                                                            *'exqfix-<CR>'*
+                                                   *'exqfix-<2-LeftMouse>'*
+<CR> or <2-LeftMouse>
+    When cursor on a file, it will open it in edit window.
+    When cursor on a folder, it will fold in/out the folder.
+
+                                                          *'exqfix-<S-CR>'*
+                                                 *'exqfix-<S-2-LeftMouse>'*
+<S-CR> or <S-2-LeftMouse>
+    When cursor on a file, it will open it in edit window splitted.
+    When cursor on a folder, it will open the folder path in OS's file 
+    explorer
+
+
+==============================================================================
+4. Configuration                                     *exqfix-configuration*
+
+                                                           *g:ex_qfix_file*
+g:ex_qfix_file~
+Default: './files.exqfix'
+
+The default path of the project file. When you open the project window and
+no project file specified, it will use this value as default project file 
+path.
+
+                                                        *g:ex_qfix_winsize*
+g:ex_qfix_winsize~
+Default: 30
+
+The window size of project window.  
+
+                                                   *g:ex_qfix_winsize_zoom*
+g:ex_qfix_winsize_zoom~
+Default: 60
+
+The zoomed size of project window.
+
+                                                         *g:ex_qfix_winpos*
+g:ex_qfix_winpos~
+Default: 'left'
+Options: 'left', 'right', 'top', 'bottom'
+
+The position of project window.
+
+                                                    *g:ex_qfix_enable_help*
+g:ex_qfix_enable_help~
+Default: 1
+
+Enable help text in the plugin
+
+------------------------------------------------------------------------------
+HIGHLIGHT COLOURS                                     *exqfix-highlighting*
+
+ex_qf_help~
+    Help text
+
+ex_qf_help_key~
+    Help mappings
+
+ex_qf_help_comma~
+    Help comma
+
+If you want to change any of those colours put a line like the following in
+your vimrc:
+>
+    hi ex_qf_fold guifg=Green ctermfg=Green
+<
+See |:highlight| for more information.
+
+==============================================================================
+5. Functions                                             *exqfix-functions*
+
+                                                 *exqfix#register_hotkey()*
+exqfix#register_hotkey({priority}, {key}, {action}, {desc})
+    Register your key-mapping by {key} in ex-qfix window. The {key} will 
+    execute function you define in {action}. The {priority} will sort your
+    {key} and {desc} in the help context in ex-qfix window.
+
+
+==============================================================================
+6. Troubleshooting & Known issues                           *exqfix-issues*
+
+
+==============================================================================
+7. History                                                 *exqfix-history*
+
+0.1.0 (2014-04-14)
+    - Initial release
+
+==============================================================================
+ vim: tw=78 ts=8 sw=4 sts=4 et ft=help
