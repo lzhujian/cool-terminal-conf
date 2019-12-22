@@ -20,9 +20,9 @@ set -g base-index 1
 setw -g mode-keys vi
 
 # start selecting text typing 'v' key (once you are in copy mode)
-bind-key -t vi-copy v begin-selection
+bind-key -T copy-mode-vi 'v' send -X begin-selection
 # # copy selected text to the system's clipboard
-bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
+bind-key -T copy-mode-vi 'y' send -X copy-pipe-and-cancel pbcopy
 
 #up
 bind-key k select-pane -U
@@ -85,8 +85,8 @@ set -g message-bg black
 set -g message-attr bright
 
 set -g status-keys vi
-bind-key -t vi-edit Up history-up
-bind-key -t vi-edit Down history-down
+bind-key -T vi-edit Up send -X history-up
+bind-key -T vi-edit Down send -X history-down
 
 set -g status-interval 1
 set -g status-justify centre # center align window list
